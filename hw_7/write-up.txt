@@ -1,0 +1,13 @@
+Name: Po An, Chen (Andy Chen)
+
+I put the sample data in the file "sample data.txt", it's a 10000X51 matrix. 
+I composite it by stacking 10000 times draw by row.
+
+The file "covariance matrix for erdata.txt" is the covariance matrix for 
+"erdata.txt", it's a symmetric matrix with diagonal as 1.
+
+The file "covariance matrix for sample data.txt" is the covariance matrix for
+"sample data.txt", this is also symmtric, but the diagonal is just close to 1.
+
+There exists some nuiance between the above two files, but they are almost the same,
+therefore, it might just be some bias from samples.

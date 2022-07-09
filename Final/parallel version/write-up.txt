@@ -1,0 +1,16 @@
+A short write up about the result we get.
+
+The 5 biggest result is in the file "resultlist.txt", 
+the most interesting one is the fifth value,
+I run the program for many times, 
+and I noticed that the fifth value will sometimes change from 42 to 21.
+
+It might because I use the average of Laplace approximation and Monte Carlo estimation
+to evaluate the order, and we know that Monte Carlo one will change
+every time you rerun the program, so the fifth of the linklist changes.
+
+Besides, I also use valgrind to check the memory leak, 
+it reported some error and memory leak, but the error message is weird.
+Therefore, I check it on the Internet, and some of the people have the same problem
+said that this problem is cause by the MPI, So I just leave it.
+(I also check the example from Lecture, it has the same problem.)

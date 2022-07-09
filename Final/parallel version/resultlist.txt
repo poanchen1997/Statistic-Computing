@@ -1,0 +1,5 @@
+index: 23	--> Laplace approx.: -79.484137 and Monte Carlo esti.: -79.338315, with beta_0:	-0.901017, beta_1: 	1.211365
+index: 37	--> Laplace approx.: -83.421070 and Monte Carlo esti.: -83.317574, with beta_0:	-0.850080, beta_1: 	0.995300
+index: 22	--> Laplace approx.: -84.037144 and Monte Carlo esti.: -84.081791, with beta_0:	-0.841622, beta_1: 	0.955221
+index: 1	--> Laplace approx.: -84.170254 and Monte Carlo esti.: -84.155937, with beta_0:	-0.760736, beta_1: 	0.984262
+index: 42	--> Laplace approx.: -85.784879 and Monte Carlo esti.: -85.678775, with beta_0:	-0.837048, beta_1: 	-0.914038

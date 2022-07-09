@@ -1,0 +1,72 @@
+Name: Po An, Chen (Andy Chen)
+
+The output file is in the "Problem_2/regressions1-2.txt", 
+we can see that all of the retain regression are having two predictors.
+The one with the highest marginal likelihood is the regression with regressor [2, 11],
+its marginal likelihood is -59.31620.
+
+I will put the snapshots of the changes I made in the folder, 
+because txt file cannot put image inside it.
+but I will briefly share my change and thought here.
+
+1. The change in AddRegression in "regmodels.cpp"
+I add a function to calculate the index of the link list before the "return", 
+and set an if condition if the index is bigger than the "nMaxReg".
+if the condition goes true, I use the function you provide to delete the last regression.
+
+// code of the part I change:
+int index = getCount(regressions);                // use the function I made to calculate the index
+if (index > nMaxRegs){                            // if condition
+    printf("Remove the regression [%d", A[0]);    // print the remove message
+    for (i = 1; i < lenA; i++){
+        printf(" %d", A[i]);
+}
+printf("], because the index is more than nMaxReg.\n");
+DeleteLastRegression(regressions);                // delete function you proviede
+}
+
+2. The function I made in "regmodels.cpp"
+I use this function to return the length of the linklist,
+the function only receive one argument, which is the link list itself, 
+and will return an integer as the index.
+
+// code of the function I made (getCount())
+int getCount(LPRegression regressions){
+    int count = 0;                 // Initialize count
+    LPRegression p = regressions;  // Initialize link list
+    while (p->Next != NULL){
+        count++;
+        p = p->Next;
+    }
+    return count;
+}
+
+3. The change in logdet() in "matrices.cpp" 
+I add a case if the matrix is 2X2, because I notice that when we pass
+the lenA = 2 to the function, it will have error(lenA = 1 also get error but you revised it), 
+but everything goes well if the lenA is greater than 3.
+
+// code change in logdet
+if (2==p){
+    double leftup, leftdown, rightup, rightdown;
+    leftup = m[0][0];
+    leftdown = m[1][0];
+    rightup = m[0][1];
+    rightdown = m[1][1];
+    return(log(leftup*rightdown - rightup*leftdown)); // the way you compute det if lenA = 2
+}
+
+4. The change in "main.cpp"
+I add the situation if we want to use two regressor in the model.
+I revise the for loop so that we won't compute the same regressor
+(e.g. [2, 3] and [3, 2])
+
+// code change in main function
+lenA = 2;
+for (i = 1; i < p; i++){
+    A[0] = i+1;
+    for (j = i; j < p - 1; j++){
+        A[1] = j+2;
+        AddRegression(nMaxReg, regressions, lenA, A, marglik(n, p, data, lenA, (int*)A));
+    }
+}
